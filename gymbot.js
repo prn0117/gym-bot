@@ -5,6 +5,7 @@ const { giphyKey } = require('./config.json');
 const { exerciseApiKey, exerciseApiHost } = require('./config.json');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token, clientId, guildId, channelId } = require('./config.json');
+const { muscles } = require('./muscles.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -18,8 +19,10 @@ for (const file of commandFiles) {
     const command = require(filePath);
     client.commands.set(command.data.name, command);
 }
-let reminderTime = '00 36 08 * * *';
+let reminderTime = '00 04 12 * * *';
 client.once(Events.ClientReady, () => {
+//     const randomElement = muscles.arms[Math.floor(Math.random() * muscles.arms.length)];
+// console.log(randomElement);
     console.log('Ready!');
     let scheduledMessage = new cron.CronJob(reminderTime, async () => {
         // This runs every day at 17:00:00

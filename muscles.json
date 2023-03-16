@@ -1,0 +1,9 @@
+{
+    "muscles": {
+        "arms":["biceps", "triceps", "forearms"],
+        "upper":["chest", "neck", "traps"],
+        "core":["abdominals", "abductors", "adductors"],
+        "legs":["calves", "glutes", "hamstrings", "quadriceps"],
+        "back":["lats", "lower_back", "middle_back"]
+    }
+}
