@@ -1,4 +1,4 @@
-
+/*The bot replies with pong (for testing purposes) */
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {

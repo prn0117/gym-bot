@@ -19,14 +19,13 @@ for (const file of commandFiles) {
     const command = require(filePath);
     client.commands.set(command.data.name, command);
 }
-let reminderTime = '00 04 12 * * *';
+let reminderTime = '00 49 12 * * *';
+// At reminderTime, display message with call to GIPHY
 client.once(Events.ClientReady, () => {
-//     const randomElement = muscles.arms[Math.floor(Math.random() * muscles.arms.length)];
-// console.log(randomElement);
     console.log('Ready!');
     let scheduledMessage = new cron.CronJob(reminderTime, async () => {
-        // This runs every day at 17:00:00
-        const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=dog&limit=25&offset=0&rating=g&lang=en`;
+        // This runs every day at reminderTime
+        const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=dogs&limit=25&offset=0&rating=g&lang=en`;
         const response = await fetch(url);
         const json = await response.json();
         const index = Math.floor(Math.random() * json.data.length);
@@ -34,11 +33,9 @@ client.once(Events.ClientReady, () => {
         const channel = client.channels.cache.get(channelId);
         channel.send(`This is your daily work-out call.`);
         channel.send(`${payload}`);
-        channel.send('Type "/exercise" for a custom workout plan!');
-        //channel.send('You message');
+        channel.send('Type "/exercise" for a custom workout plan! Select your choice of muscle.');
     });
 
-    // When you want to start it, use:
     scheduledMessage.start()
 });
 client.on(Events.InteractionCreate, async interaction => {
