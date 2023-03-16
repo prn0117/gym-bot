@@ -14,7 +14,6 @@ module.exports = {
             const json = await response.json();
             const index = Math.floor(Math.random() * json.data.length);
             let payload = json.data[index].url;
-            console.log(json.data[0].url);
             await interaction.reply(payload);
         }
     },

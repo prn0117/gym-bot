@@ -41,7 +41,6 @@ module.exports = {
                     const index = Math.floor(Math.random() * json.length);
                     //Muscle: ${json[index].muscle}\n
                     let payload = `Exercise: ${json[index].name}\nType: ${json[index].type}\nEquipment: ${json[index].equipment}\nLevel: ${json[index].difficulty}\n\n`;
-                    console.log(payload);
                     exercisesArr.push(payload);
                 }
                 
