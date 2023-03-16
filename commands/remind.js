@@ -1,9 +1,8 @@
 
 const { SlashCommandBuilder } = require('discord.js');
 const { giphyKey } = require('../config.json');
-const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=bodybuilding&limit=25&offset=0&rating=g&lang=en`;
+const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=dog&limit=25&offset=0&rating=g&lang=en`;
 module.exports = {
-
     data: new SlashCommandBuilder()
         .setName('remind')
         .setDescription('Replies with GIF'),
@@ -12,13 +11,13 @@ module.exports = {
 
         if (interaction.commandName === 'remind') {
             
-            const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=zyzz&limit=25&offset=0&rating=g&lang=en`;
+            const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=dog&limit=25&offset=0&rating=g&lang=en`;
             const response = await fetch(url);
             const json = await response.json();
             const index = Math.floor(Math.random() * json.data.length);
-            let pay = json.data[index].url;
+            let payload = json.data[index].url;
             console.log(json.data[0].url);
-            await interaction.reply(pay);
+            await interaction.reply(payload);
         }
     },
 };

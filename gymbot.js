@@ -1,6 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const cron = require('cron');
+const { giphyKey } = require('./config.json');
+const { exerciseApiKey, exerciseApiHost } = require('./config.json');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token, clientId, guildId, channelId } = require('./config.json');
 
@@ -16,15 +18,20 @@ for (const file of commandFiles) {
     const command = require(filePath);
     client.commands.set(command.data.name, command);
 }
-
+let reminderTime = '00 36 08 * * *';
 client.once(Events.ClientReady, () => {
     console.log('Ready!');
-    let scheduledMessage = new cron.CronJob('00 11 18 * * *', () => {
-        // This runs every day at 10:30:00, you can do anything you want
-        // Specifing your guild (server) and your channel
+    let scheduledMessage = new cron.CronJob(reminderTime, async () => {
+        // This runs every day at 17:00:00
+        const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=dog&limit=25&offset=0&rating=g&lang=en`;
+        const response = await fetch(url);
+        const json = await response.json();
+        const index = Math.floor(Math.random() * json.data.length);
+        let payload = json.data[index].url;
         const channel = client.channels.cache.get(channelId);
-        
-        channel.send('content');
+        channel.send(`This is your daily work-out call.`);
+        channel.send(`${payload}`);
+        channel.send('Type "/exercise" for a custom workout plan!');
         //channel.send('You message');
     });
 
