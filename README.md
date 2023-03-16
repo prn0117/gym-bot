@@ -7,8 +7,9 @@ Made for me and my gym bros for motivation to go to the gym everday. Comes with 
 come up with a plan. 
 
 ### Usage
-"/remind": sends a motivational GIF to the server from GIPHY API
-"/exercise (option)": generates workout plan for the muscle group selected (from Exercises API). Options include Upper, Legs, Core, Arms etc.
+"/remind": sends a motivational GIF to the server from GIPHY API <br>
+"/exercise (option)": generates workout plan for the muscle group selected (from Exercises API). Options include Upper, Legs, Core, Arms etc. <br>
+"/ping": outputs pong (for initial testing)
 
 ### Technologies Used
 Node.js, discord.js, GIPHYAPI, ExercisesAPI, rapidAPI
