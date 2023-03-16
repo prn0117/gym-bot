@@ -10,7 +10,6 @@ module.exports = {
         if (!interaction.isCommand()) return;
 
         if (interaction.commandName === 'remind') {
-            
             const url = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=dog&limit=25&offset=0&rating=g&lang=en`;
             const response = await fetch(url);
             const json = await response.json();

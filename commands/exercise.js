@@ -7,12 +7,22 @@ module.exports = {
 
     data: new SlashCommandBuilder()
         .setName('exercise')
-        .setDescription('Replies with workout plan'),
+        .setDescription('Replies with workout plan')
+        .addStringOption(option =>
+			option.setName('muscle')
+				.setDescription('The muscle category')
+				.setRequired(true)
+				.addChoices(
+					{ name: 'Arms', value: 'biceps' },
+					{ name: 'Upper', value: 'chest' },
+					{ name: 'Lower', value: 'legs' },
+				)),
     async execute(interaction) {
         if (!interaction.isCommand()) return;
 
         try {
             if (interaction.commandName === 'exercise') {
+                const muscle = interaction.options.getString('muscle');
                 const options = {
                     method: 'GET',
                     headers: {
@@ -28,6 +38,7 @@ module.exports = {
                 let pay = `${json[index].name} for ${json[index].type}`;
                 console.log(pay);
                 await interaction.reply(pay);
+                //await interaction.reply(muscle);
             }
         }
         catch (error) {
